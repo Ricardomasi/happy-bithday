@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Soni!</title>
+    <link rel="icon" type="image/png" href="tortuga.jpg">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-width: 100vw;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .center-box {
+            background: rgba(0,0,0,0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 300px;
+            max-width: 90vw;
+            min-height: 150px;
+            z-index: 2;
+        }
+
+        .center-box button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: none;
+            background: #ff69b4;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+
+        .center-box button:hover {
+            background: #ff1493;
+        }
+
+        #birthdayMessage h1 {
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 8px #000;
+            text-align: center;
+            margin: 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .mensaje-final {
+            font-size: 1.5em;
+            color: #fff;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 2px 2px 8px #000, 0 0 10px #ff69b4;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .imagen-tortuga {
+            display: block;
+            margin: 30px auto 0 auto;
+            max-width: 180px;
+            width: 80%;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: fall linear;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="birthdayAudio" loop>
+        <source src="happy.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="center-box" id="centerBox">
+        <button id="showMessageBtn">Si tu cumpleaños ya pasó, pero es en agosto HAZ CLIC AQUÍ 🎁</button>
+        <div id="birthdayMessage" style="display:none;">
+            <h1>🎂 ¡Feliz Cumpleaños Soni!!! 🎂<br>
+            ¡Olvida los años! Lo que importa es que hayas mordido el pastel 🍰</h1>
+            <p class="mensaje-final">Espero que este mes esté lleno de alegría, risas y momentos inolvidables. ¡Disfruta al máximo!</p>
+            <p class="mensaje-final">Con cariño, Ricky, Pato o Pateins 🥳😊</p>
+            <img src="tortuga.jpg" alt="Tortuga" class="imagen-tortuga">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('showMessageBtn').onclick = function() {
+            document.getElementById('birthdayMessage').style.display = 'block';
+            document.getElementById('birthdayAudio').play();
+            this.style.display = 'none';
+        };
+
+        function createConfetti() {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        setInterval(createConfetti, 100);
+    </script>
+</body>
+</html>
